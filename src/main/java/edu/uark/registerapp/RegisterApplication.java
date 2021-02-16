@@ -8,7 +8,6 @@ public class RegisterApplication {
 
 	public static void main(final String[] args) {
 		SpringApplication.run(RegisterApplication.class, args);
-		System.out.println("Hello, this is Gabriel. Test!")
 	}
 
 }
