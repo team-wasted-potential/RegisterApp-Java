@@ -1,34 +1,12 @@
-document.addEventListener("DOMContentLoaded", () => {
-	const productListElements = document.getElementById("productsListing").children;
-
-	for (let i = 0; i < productListElements.length; i++) {
-		productListElements[i].addEventListener("click", productClick);
+function showElevatedOptions(elevated) {
+	if(elevated == 0) {
+		document.getElementById("createEmployee").style.visibility = 'hidden';
+		document.getElementById("salesReport").style.display = 'hidden';
+		document.getElementById("cashierReport").style.display = 'hidden';
 	}
-});
-
-function findClickedListItemElement(clickedTarget) {
-	if (clickedTarget.tagName.toLowerCase() === "li") {
-		return clickedTarget;
-	} else {
-		let ancestorIsListItem = false;
-		let ancestorElement = clickedTarget.parentElement;
-
-		while (!ancestorIsListItem && (ancestorElement != null)) {
-			ancestorIsListItem = (ancestorElement.tagName.toLowerCase() === "li");
-
-			if (!ancestorIsListItem) {
-				ancestorElement = ancestorElement.parentElement;
-			}
-		}
-
-		return (ancestorIsListItem ? ancestorElement : null);
+	if(elevated == 1) {
+		document.getElementById("createEmployee").style.visibility = 'visible';
+		document.getElementById("salesReport").style.visibility = 'visible';
+		document.getElementById("cashierReport").style.visibility = 'visible';
 	}
-}
-
-function productClick(event) {
-	let listItem = findClickedListItemElement(event.target);
-
-	window.location.assign(
-		"/productDetail/"
-		+ listItem.querySelector("input[name='productId'][type='hidden']").value);
 }
