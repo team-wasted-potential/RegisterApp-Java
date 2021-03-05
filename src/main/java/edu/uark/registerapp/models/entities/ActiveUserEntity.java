@@ -16,14 +16,11 @@ import org.hibernate.annotations.GenerationTime;
 
 @Entity
 @Table(name="activeuser")
-
 public class ActiveUserEntity {
-
-	private UUID id;
-  
-	@Id
+    @Id
     @Column(name="id", updatable = false)
     @GeneratedValue(strategy=GenerationType.AUTO)
+    private final UUID id;
 
 	public UUID getId() {
 		return this.id;
