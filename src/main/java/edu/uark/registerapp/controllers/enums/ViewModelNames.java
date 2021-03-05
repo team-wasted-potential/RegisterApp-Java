@@ -4,7 +4,10 @@ public enum ViewModelNames {
 	NOT_DEFINED(""),
 	ERROR_MESSAGE("errorMessage"),
 	PRODUCTS("products"), // Product listing
-	PRODUCT("product"); // Product detail
+	PRODUCT("product"), // Product detail
+	IS_ELEVATED_USER("isElevatedUser"),
+	EMPLOYEE_ID("employeeId"),
+	EMPLOYEE("employee");
 	
 	public String getValue() {
 		return value;

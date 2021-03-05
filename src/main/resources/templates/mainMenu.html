@@ -39,17 +39,17 @@
 				<br><br>
 				<a href="/productListing/" class="button">View Products</a>
 			</div>
-			<div id="createEmployee" style="visibility:hidden">
+			<div id="createEmployee" style="visibility:hidden" th:class=" not ${isElevatedUser} ? hidden : ''">
 				<br><br>
-				<a href="/" class="button">Create Employee</a>
+				<a href="/mainMenu" class="button">Create Employee</a>
 			</div>
-			<div id="salesReport" style="visibility:hidden">
+			<div id="salesReport" style="visibility:hidden" th:class=" not ${isElevatedUser} ? hidden : ''">
 				<br><br>
-				<a href="/" class="button">Sales Report</a>
+				<a href="/mainMenu" class="button">Sales Report</a>
 			</div>
-			<div id="cashierReport" style="visibility:hidden">
+			<div id="cashierReport" style="visibility:hidden" th:class=" not ${isElevatedUser} ? hidden : ''">
 				<br><br>
-				<a href="/" class="button">Cashier Report</a>
+				<a href="/mainMenu" class="button">Cashier Report</a>
 			</div>
 		</div>
 
