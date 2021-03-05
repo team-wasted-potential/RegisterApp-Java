@@ -16,23 +16,29 @@
 
 <body>
 	<div class="header">
-		<h1 class="primary-message">Welcome!</h1>
+		<h1 class="primary-message">Employee Login</h1>
 	</div>
 
+   <!-- Allows for displaying error messages when one is available  -->
 	<div id="main" class="main">
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
 
     <div class="signInWrapper">
+      <!-- Form element to submit user credentials using POST request -->
+      <!-- Also invokes JS method to validate user submission -->
       <form id="signInForm" method="post" onsubmit="return SignInValidation()" >
+        <!-- Input element of type number for Employee ID -->
         <label for="employeeID">Employee ID:</label>
         <input type="number" id="employeeID" name="employeeID">
         <br><br>
+        <!-- Input element of type password for Employee Password -->
         <label for="employeePassword">Password:</label>
         <input type="password" id="employeePassword" name="employeePassword">
         <br><br>
-        <input type="submit" value="Submit">
+        <!-- Input element of type submit with text Sign In -->
+        <input type="submit" value="Sign In">
       </form>
 		</div>
 	</div>
