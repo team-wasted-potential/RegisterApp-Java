@@ -3,6 +3,7 @@ package edu.uark.registerapp.controllers.enums;
 public enum ViewNames {
 	PRODUCT_DETAIL("productDetail"),
 	PRODUCT_LISTING("productListing"),
+	SIGN_IN("signIn"),
 	MAIN_MENU("mainMenu", "/");
 	
 	public String getRoute() {
