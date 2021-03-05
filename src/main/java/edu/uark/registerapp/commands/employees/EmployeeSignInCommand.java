@@ -30,13 +30,13 @@ public class EmployeeSignInCommand implements ResultCommandInterface<Employee> {
     }
 
     private void validateProperties() {
-		if (StringUtils.isBlank(this.employeeSignIn.getEmployeeId()) {
+		if (StringUtils.isBlank(this.employeeSignIn.getEmployeeId())) {
 			throw new UnprocessableEntityException("Employee Id");
 		}
-        if (StringUtils.isBlank(this.employeeSignIn.getPassword()) {
+        if (StringUtils.isBlank(this.employeeSignIn.getPassword())) {
 			throw new UnprocessableEntityException("Password");
 		}
-        if (!StringUtils.isNumeric(this.employeeSignIn.getEmployeeId()) {
+        if (!StringUtils.isNumeric(this.employeeSignIn.getEmployeeId())) {
 			throw new UnprocessableEntityException("Employee Id");
 		}
 	}
