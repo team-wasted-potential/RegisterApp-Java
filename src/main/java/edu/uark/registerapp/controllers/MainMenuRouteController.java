@@ -10,16 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/mainMenu")
 public class MainMenuRouteController {
 	@GetMapping("")
-	public ModelAndView mainMenu(@RequestParam final Map<String, String> queryParameters, final HttpServletRequest request) {
-		ModelAndView modelAndView =	new ModelAndView(ViewNames.MAIN_MENU.getViewName());
+	public ModelAndView mainMenu(@RequestParam final Map<String, String> queryParameters,
+			final HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView(ViewNames.MAIN_MENU.getViewName());
 
 		return modelAndView;
 	}
-	public String getQuery(@RequestParam String query)
-	{
+
+	public String getQuery(@RequestParam String query) {
 		return query;
 	}
 }
