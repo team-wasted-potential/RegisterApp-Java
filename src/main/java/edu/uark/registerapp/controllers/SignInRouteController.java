@@ -29,18 +29,12 @@ public class SignInRouteController {
         try {
             this.activeEmployeeExistsQuery.execute();
         } catch (NotFoundException e) {
-            return new ModelAndView("redirect:".concat(ViewNames.EMPLOYEE_DETAIL.getRoute()));
+            return new ModelAndView("redirect:".concat(ViewNames.EMPLOYEE_DETAIL.getRoute()), queryParameters);
         }
 
-        // ModelAndView modelAndView = this
-        // .setErrorMessageFromQueryString(new
-        // ModelAndView(ViewNames.SIGN_IN.getViewName()), queryParameters);
-
-        // if (queryParameters.containsKey(ViewModelNames.EMPLOYEE_ID.getValue())) {
         ModelAndView modelAndView = new ModelAndView(ViewNames.SIGN_IN.getViewName());
-        modelAndView.addObject(ViewModelNames.EMPLOYEE_ID.getValue(),
-                queryParameters.get(ViewModelNames.EMPLOYEE_ID.getValue()));
-        // }
+        // modelAndView.addObject(ViewModelNames.EMPLOYEE_ID.getValue(),
+        // queryParameters.get(QueryParameterNames.EMPLOYEE_ID.getValue()));
 
         return modelAndView;
     }
