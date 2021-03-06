@@ -29,7 +29,9 @@ public class SignInRouteController {
         try {
             this.activeEmployeeExistsQuery.execute();
         } catch (NotFoundException e) {
-            return new ModelAndView("redirect:".concat(ViewNames.EMPLOYEE_DETAIL.getRoute()), queryParameters);
+            // return new
+            // ModelAndView("redirect:".concat(ViewNames.EMPLOYEE_DETAIL.getRoute()),
+            // queryParameters);
         }
 
         ModelAndView modelAndView = new ModelAndView(ViewNames.SIGN_IN.getViewName());
