@@ -1,31 +1,35 @@
+document.addEventListener("DOMContentLoaded", function(event) {
+    const employeeIdEditElement = getEmployeeIdEditElement();
+    employeeIdEditElement.focus();
+    employeeIdEditElement.select();
+})
 function SignInValidation() {
-  // Storing field values in variables
-  var employeeID = document.getElementById("employeeID").value;
-  var employeePassword = document.getElementById("employeePassword").value;
+    const employeeIdEditElement = getEmployeeIdEditElement();
 
   // Conditions to check user input on sign in page
-  // Checks if employeeID is number and not blank AND checks if employeePassword is not blank
-  if ( ( (isNaN(employeeID) == false) && (employeeID != '') ) && (employeePassword != '') ) {
-      alert("All type of validation has done on OnSubmit event.:");
-      return true;
-  }
+    if(isNaN(Number(employeeIdEditElement.value)) || (Number(employeeIdEditElement.value) <= 0)) {
+        displayError("Please provide a valid employee ID.");
+        employeeIdEditElement.focus();
+        employeeIdEditElement.select();
+        return false;
+    }
 
-  // If password was blank
-  else if (employeePassword == '') {
-      alert("Password was left empty.");
-      return false;
-  }  
+    const passwordEditElement = getPasswordEditElement();
+    if(passwordEditElement.value == null || passwordEditElement.value.trim() === "") {
+        displayError("Please provide a valid password. It may not be blank.");
 
-  // If ID was blank
-  else if (employeeID == '') {
-      alert("ID was left empty.");
-      return false;
-  }
+        passwordEditElement.focus()
+        passwordEditElement.select();
+        return false
+    }
 
-  // If ID was not a number
-  else if (isNaN(employeeID) == true)
-  {
-      alert("ID was not a number.");
-      return false;
-  }
+    return true;
+
+    function getPasswordEditElement() {
+        return document.getElementById("employeeId");
+    }
+
+    function getEmployeeIdEditElement() {
+        return document.getElementById("password");
+    }
 }

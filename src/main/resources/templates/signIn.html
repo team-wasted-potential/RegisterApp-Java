@@ -28,17 +28,17 @@
     <div class="signInWrapper">
       <!-- Form element to submit user credentials using POST request -->
       <!-- Also invokes JS method to validate user submission -->
-      <form id="signInForm" method="post" onsubmit="return SignInValidation()" >
+      <form action="/" method="POST" onsubmit="return SignInValidation();" class="inputContent">
         <!-- Input element of type number for Employee ID -->
-        <label for="employeeID">Employee ID:</label>
-        <input type="number" id="employeeID" name="employeeID">
+        <label for="employeeId">Employee ID:</label>
+        <input type="number" id="employeeId" name="employeeId" class="update" th:value="${employeeId}"/>
         <br><br>
         <!-- Input element of type password for Employee Password -->
-        <label for="employeePassword">Password:</label>
-        <input type="password" id="employeePassword" name="employeePassword">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="update"/>
         <br><br>
         <!-- Input element of type submit with text Sign In -->
-        <input type="submit" value="Sign In">
+        <input type="submit" value="Sign In" class="submit">
       </form>
 		</div>
 	</div>

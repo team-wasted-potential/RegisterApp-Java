@@ -22,22 +22,20 @@ import edu.uark.registerapp.models.api.EmployeeSignIn;
 
 @Controller
 @RequestMapping(value = "/")
-public class SignInRouteController {
+public class SignInRouteController extends BaseRouteController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showSignIn(@RequestParam final Map<String, String> queryParameters) {
 
         try {
             this.activeEmployeeExistsQuery.execute();
         } catch (NotFoundException e) {
-            // return new
-            // ModelAndView("redirect:".concat(ViewNames.EMPLOYEE_DETAIL.getRoute()),
-            // queryParameters);
+            return new ModelAndView(REDIRECT_PREPEND.concat(ViewNames.EMPLOYEE_DETAIL.getRoute()));
         }
 
-        ModelAndView modelAndView = new ModelAndView(ViewNames.SIGN_IN.getViewName());
-        // modelAndView.addObject(ViewModelNames.EMPLOYEE_ID.getValue(),
-        // queryParameters.get(QueryParameterNames.EMPLOYEE_ID.getValue()));
-
+        ModelAndView modelAndView = this.setErrorMessageFromQueryString(new ModelAndView(ViewNames.SIGN_IN.getViewName()), queryParameters);
+        if(queryParameters.containsKey(QueryParameterNames.EMPLOYEE_ID.getValue())) {
+            modelAndView.addObject(ViewModelNames.EMPLOYEE_ID.getValue(), queryParameters.get(QueryParameterNames.EMPLOYEE_ID.getValue()));
+        }
         return modelAndView;
     }
 
@@ -45,8 +43,7 @@ public class SignInRouteController {
     public ModelAndView performSignIn(EmployeeSignIn employeeSignIn, HttpServletRequest request) {
 
         try {
-            this.employeeSignInCommand.setSessionId(request.getSession().getId()).setEmployeeSignIn(employeeSignIn)
-                    .execute();
+            this.employeeSignInCommand.setSessionId(request.getSession().getId()).setEmployeeSignIn(employeeSignIn).execute();
         } catch (Exception e) {
             ModelAndView modelAndView = new ModelAndView(ViewNames.SIGN_IN.getViewName());
 
@@ -56,7 +53,7 @@ public class SignInRouteController {
             return modelAndView;
         }
 
-        return new ModelAndView("redirect:".concat(ViewNames.MAIN_MENU.getRoute()));
+        return new ModelAndView(REDIRECT_PREPEND.concat(ViewNames.MAIN_MENU.getRoute()));
     }
 
     // Properties

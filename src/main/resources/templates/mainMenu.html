@@ -17,7 +17,7 @@
 <body onload="showElevatedOptions(1)">
 	<!-- The following <div> tag contains the logout functionality -->
 	<div class="logoutIcon">
-		<a href="/signIn" title="Logout">
+		<a href="/" title="Logout">
 			<span class="material-icons">logout</span>
 		</a>
 	</div>
@@ -32,24 +32,24 @@
 		</div>
 
 		<div class="menuWrapper">
-			<div>
-				<a href="/" class="button">Start Transaction</a>
+			<div th:class=" not ${isElevatedUser} ? hidden : ''">
+				<a href="/" class="button" title="Functionality Not Availible">Start Transaction</a>
 			</div>
 			<div>
 				<br><br>
 				<a href="/productListing/" class="button">View Products</a>
 			</div>
-			<div id="createEmployee" style="visibility:hidden" th:class=" not ${isElevatedUser} ? hidden : ''">
+			<div id="createEmployee">
 				<br><br>
 				<a href="/mainMenu" class="button">Create Employee</a>
 			</div>
-			<div id="salesReport" style="visibility:hidden" th:class=" not ${isElevatedUser} ? hidden : ''">
+			<div id="salesReport" th:class=" not ${isElevatedUser} ? hidden : ''">
 				<br><br>
-				<a href="/mainMenu" class="button">Sales Report</a>
+				<a href="/mainMenu" class="button" title="Functionality Not Availible">Sales Report</a>
 			</div>
-			<div id="cashierReport" style="visibility:hidden" th:class=" not ${isElevatedUser} ? hidden : ''">
+			<div id="cashierReport" th:class=" not ${isElevatedUser} ? hidden : ''">
 				<br><br>
-				<a href="/mainMenu" class="button">Cashier Report</a>
+				<a href="/mainMenu" class="button" title="Functionality Not Availible">Cashier Report</a>
 			</div>
 		</div>
 

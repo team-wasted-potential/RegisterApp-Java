@@ -31,42 +31,35 @@ public class EmployeeSignInCommand implements ResultCommandInterface<Employee> {
 
     private void validateProperties() {
 		if (StringUtils.isBlank(this.employeeSignIn.getEmployeeId())) {
-			throw new UnprocessableEntityException("Employee Id");
+			throw new UnprocessableEntityException("Employee ID");
 		}
+        try {
+            Integer.parseInt(this.employeeSignIn.getEmployeeId());
+        } catch (final NumberFormatException e) {
+            throw new UnprocessableEntityException("Employee ID");
+        }
         if (StringUtils.isBlank(this.employeeSignIn.getPassword())) {
 			throw new UnprocessableEntityException("Password");
-		}
-        if (!StringUtils.isNumeric(this.employeeSignIn.getEmployeeId())) {
-			throw new UnprocessableEntityException("Employee Id");
 		}
 	}
 
     @Transactional
     private EmployeeEntity SignInEmployee() {
-        final Optional<EmployeeEntity> employee = this.employeeRepository.findByEmployeeId(Integer.parseInt(this.employeeSignIn.getEmployeeId()));
+        final Optional<EmployeeEntity> employeeEntity = this.employeeRepository.findByEmployeeId(Integer.parseInt(this.employeeSignIn.getEmployeeId()));
         //If Employee is not found throw exception
-        if (!employee.isPresent()) {
-			throw new UnauthorizedException();
+        if (!employeeEntity.isPresent() || !Arrays.equals(employeeEntity.get().getPassword(), EmployeeHelper.hashPassword(this.employeeSignIn.getPassword()))) {
+            //throw new UnauthorizedException();
 		}
 
-        if(Arrays.equals(employee.get().getPassword(), EmployeeHelper.hashPassword(this.employeeSignIn.getPassword()))) {
-            throw new UnauthorizedException();
-        }
+        final Optional<ActiveUserEntity> activeUserEntity = this.activeUserRepository.findByEmployeeId(employeeEntity.get().getId());
 
-        final Optional<ActiveUserEntity> activeUser = this.activeUserRepository.findByEmployeeId(employee.get().getId());
-
-        if(!activeUser.isPresent()) {
-            this.activeUserRepository.save((new ActiveUserEntity()).setSessionKey(this.sessionId).setEmployeeId(employee.get().getId()).setClassification(employee.get().getClassification()).setName(employee.get().getFirstName().concat(" ").concat(employee.get().getLastName())));
+        if(!activeUserEntity.isPresent()) {
+            this.activeUserRepository.save((new ActiveUserEntity()).setSessionKey(this.sessionId).setEmployeeId(employeeEntity.get().getId()).setClassification(employeeEntity.get().getClassification()).setName(employeeEntity.get().getFirstName().concat(" ").concat(employeeEntity.get().getLastName())));
         } else {
-            this.activeUserRepository.save(activeUser.get().setSessionKey(this.sessionId));
+            this.activeUserRepository.save(activeUserEntity.get().setSessionKey(this.sessionId));
         }
-        return employee.get();
+        return employeeEntity.get();
     }
-
-    private Employee apiEmployee;
-	public Employee getApiEmployee() {
-		return this.apiEmployee;
-	}
 
     private EmployeeSignIn employeeSignIn;
     private String sessionId;
