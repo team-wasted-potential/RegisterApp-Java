@@ -3,9 +3,7 @@ package edu.uark.registerapp.models.api;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
-
 import org.apache.commons.lang3.StringUtils;
-
 import edu.uark.registerapp.commands.employees.helpers.EmployeeHelper;
 import edu.uark.registerapp.models.entities.EmployeeEntity;
 
@@ -90,14 +88,14 @@ public class Employee extends ApiResponse {
 	public String getCreatedOn() {
 		return this.createdOn;
 	}
-	public Employee setCreatedOn(final String createdOn) {
-		this.createdOn = createdOn;
-		return this;
-	}
 	public Employee setCreatedOn(final LocalDateTime createdOn) {
 		this.createdOn =
 			createdOn.format(DateTimeFormatter.ofPattern("MM/dd/yyyy"));
 
+		return this;
+	}
+	public Employee setCreatedOn(final String createdOn) {
+		this.createdOn = createdOn;
 		return this;
 	}
 

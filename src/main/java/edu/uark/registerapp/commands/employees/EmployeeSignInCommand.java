@@ -48,7 +48,8 @@ public class EmployeeSignInCommand implements ResultCommandInterface<Employee> {
         final Optional<EmployeeEntity> employeeEntity = this.employeeRepository.findByEmployeeId(Integer.parseInt(this.employeeSignIn.getEmployeeId()));
         //If Employee is not found throw exception
         if (!employeeEntity.isPresent() || !Arrays.equals(employeeEntity.get().getPassword(), EmployeeHelper.hashPassword(this.employeeSignIn.getPassword()))) {
-            //throw new UnauthorizedException();
+            throw new UnauthorizedException();
+
 		}
 
         final Optional<ActiveUserEntity> activeUserEntity = this.activeUserRepository.findByEmployeeId(employeeEntity.get().getId());
