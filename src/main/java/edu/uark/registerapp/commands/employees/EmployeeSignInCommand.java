@@ -14,7 +14,6 @@ import edu.uark.registerapp.models.entities.EmployeeEntity;
 import edu.uark.registerapp.commands.exceptions.UnauthorizedException;
 import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
-import javassist.NotFoundException;
 import edu.uark.registerapp.commands.employees.helpers.EmployeeHelper;
 import java.util.Arrays;
 
