@@ -135,9 +135,7 @@ public class Employee extends ApiResponse {
 		this.firstName = employeeEntity.getFirstName();
 		this.managerId = employeeEntity.getManagerId();
 		this.classification = employeeEntity.getClassification();
-		this.employeeId =
-			EmployeeHelper.padEmployeeId(employeeEntity.getEmployeeId());
-
+		this.employeeId = EmployeeHelper.padEmployeeId(employeeEntity.getEmployeeId());
 		this.setCreatedOn(employeeEntity.getCreatedOn());
 	}
 }
