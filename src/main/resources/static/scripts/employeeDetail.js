@@ -148,7 +148,13 @@ function setEmployeeId(employeeId) {
 }
 
 function getEmployeeManagerId() {
-	return document.getElementById("employeeManagerId").value;
+	//return document.getElementById("employeeManagerId").value; 
+	//Assigns random integer for ManagerId between 1 and 10,000
+	min = Math.ceil(1);
+	max = Math.floor(999999999999);
+	random = Math.floor(Math.random() * (max - min) + min);
+	pre_amble = "00000000-0000-1000-8000-";
+	return pre_amble.concat(random);
 }
 
 function getEmployeeEmployeeId() {
