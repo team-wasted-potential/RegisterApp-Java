@@ -15,11 +15,9 @@
 
 <body>
 	<!-- The following <div> tag contains the logout functionality -->
-		<div class="logoutIcon">
-			<a href="/" title="Logout">
-				<span class="material-icons">logout</span>
-			</a>
-		</div>
+		<div class="logoutIcon" title="Logout" id="signOutImage">
+			<span class="material-icons">logout</span>
+	</div>
 
 	<div class="header">
 		<h1 class="primary-message">Employee Detail</h1>
@@ -48,7 +46,7 @@
 					<tr th:class="${employee.isEmpty} ? hidden : ''">
 						<td class="label">Employee ID:</td>
 						<td>
-							<input id="employeeEmployeeId" type="text" th:value="${!employee.isEmpty} ? ${employee.employeeId} : ''" class="update" disabled value="444" />
+							<input id="employeeEmployeeId" type="text" th:value="${!employee.isEmpty} ? ${employee.employeeId} : ''" class="update" disabled />
 						</td>
 					</tr>
 					<tr>

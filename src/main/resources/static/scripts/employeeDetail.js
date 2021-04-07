@@ -147,9 +147,8 @@ function setEmployeeId(employeeId) {
 	document.getElementById("employeeId").value = employeeId;
 }
 
-function getEmployeeManagerId() {
-	//return document.getElementById("employeeManagerId").value; 
-	//Assigns random integer for ManagerId between 1 and 10,000
+function getEmployeeManagerId() { 
+	//Assigns random integers for last 12 digits of ManagerId
 	min = Math.ceil(1);
 	max = Math.floor(999999999999);
 	random = Math.floor(Math.random() * (max - min) + min);
