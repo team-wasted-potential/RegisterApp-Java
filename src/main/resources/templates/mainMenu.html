@@ -1,0 +1,79 @@
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<title>Register - Menu</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+	<!-- Adds logout icon -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/mainMenu.js" defer></script>
+</head>
+
+<!-- showElevatedOptions() is defined in mainMenu.js, passing 1 will show elevated options, 0 will not -->
+<body onload="showElevatedOptions(1)">
+	<!-- The following <div> tag contains the logout functionality -->
+	<div class="logoutIcon">
+		<a href="/" title="Logout">
+			<span class="material-icons">logout</span>
+		</a>
+	</div>
+
+	<div class="header">
+		<h1 class="primary-message">Main Menu</h1>
+	</div>
+
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+
+		<div class="menuWrapper">
+			<div th:class=" not ${isElevatedUser} ? hidden : ''">
+				<a href="/" class="button" title="Functionality Not Availible">Start Transaction</a>
+			</div>
+			<div>
+				<br><br>
+				<a href="/productListing/" class="button">View Products</a>
+			</div>
+			<div id="createEmployee">
+				<br><br>
+				<a href="/mainMenu" class="button">Create Employee</a>
+			</div>
+			<div id="salesReport" th:class=" not ${isElevatedUser} ? hidden : ''">
+				<br><br>
+				<a href="/mainMenu" class="button" title="Functionality Not Availible">Sales Report</a>
+			</div>
+			<div id="cashierReport" th:class=" not ${isElevatedUser} ? hidden : ''">
+				<br><br>
+				<a href="/mainMenu" class="button" title="Functionality Not Availible">Cashier Report</a>
+			</div>
+		</div>
+
+		<div class="hidden">
+			<input type="checkbox" id="isRefreshed" class="hidden">
+			<script type="text/javascript">
+				window.onunload = function() {
+					const isRefreshedElement = document.getElementById("isRefreshed");
+
+					if(!isRefreshedElement.checked) {
+						isRefreshedElement.checked = true;
+					} else {
+						isRefreshedElement.checked = false;
+						location.reload();
+					}
+				}
+			</script>
+		</div>
+	</div>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+	</div>
+
+</body>
+
+</html>

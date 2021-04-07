@@ -1,0 +1,48 @@
+
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <title>Register - SignIn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="/styles/master.css">
+  <link rel="stylesheet" type="text/css" href="/styles/signIn.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+  <script type="text/javascript" src="/scripts/master.js" defer></script>
+  <script type="text/javascript" src="/scripts/signIn.js" defer></script>
+</head>
+
+<body>
+	<div class="header">
+		<h1 class="primary-message">Employee Login</h1>
+	</div>
+
+   <!-- Allows for displaying error messages when one is available  -->
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
+
+    <div class="signInWrapper">
+      <!-- Form element to submit user credentials using POST request -->
+      <!-- Also invokes JS method to validate user submission -->
+      <form action="/" method="POST" onsubmit="return SignInValidation();" class="inputContent">
+        <!-- Input element of type number for Employee ID -->
+        <label for="employeeId">Employee ID:</label>
+        <input type="number" id="employeeId" name="employeeId" class="update" th:value="${employeeId}"/>
+        <br><br>
+        <!-- Input element of type password for Employee Password -->
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" class="update"/>
+        <br><br>
+        <!-- Input element of type submit with text Sign In -->
+        <input type="submit" value="Sign In" class="submit">
+      </form>
+		</div>
+	</div>
+
+</body>
+
+</html>
