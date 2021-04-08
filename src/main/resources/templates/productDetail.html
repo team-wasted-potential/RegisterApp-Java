@@ -14,7 +14,8 @@
 	<script type="text/javascript" src="/scripts/productDetail.js" defer></script>
 </head>
 
-<body>
+<!-- showElevatedOptions() is defined in productDetail.js, passing 1 will show elevated options, 0 will not -->
+<body onload="showElevatedOptions(1)">
 	<!-- The following <div> tag contains the logout functionality -->
 		<div class="logoutIcon" title="Logout" id="signOutImage">
 			<span class="material-icons">logout</span>
@@ -28,33 +29,30 @@
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-
+<!-- If user is not an elevated user, the user will not be able to input text into lookup code or count -->
 		<div class="productDetailWrapper">
-			<!-- If user is not an elevated user, the user will not be able to input text into lookup code or count -->
-			<div th:class=" not ${isElevatedUser} ? hidden : ''">
-				<table id="productDetails">
-					<tbody>
-						<tr class="hidden">
-							<td>ID:</td>
-							<td>
-								<input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
-							</td>
-						</tr>
-						<tr>
-							<td class="label">Lookup Code:</td>
-							<td>
-								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
-							</td>
-						</tr>
-						<tr>
-							<td class="label">Count:</td>
-							<td>
-								<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
+			<table id="productDetails">
+				<tbody>
+					<tr class="hidden">
+						<td>ID:</td>
+						<td>
+							<input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Lookup Code:</td>
+						<td>
+							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Count:</td>
+						<td>
+							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 
 <!-- If user is not an elevated user, the delete and save buttons will not appear for them -->
