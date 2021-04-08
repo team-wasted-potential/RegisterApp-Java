@@ -2,7 +2,7 @@
 
 <head>
 	<title>Register - Product</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="stylesheet" type="text/css" href="/styles/master.css">
 	<link rel="stylesheet" type="text/css" href="/styles/productDetail.css">
@@ -23,12 +23,12 @@
 	<div class="header">
 		<h1 class="primary-message">Product Detail</h1>
 	</div>
-		
+
 	<div id="main" class="main">
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-
+<!-- If user is not an elevated user, the user will not be able to input text into lookup code or count -->
 		<div class="productDetailWrapper">
 			<table id="productDetails">
 				<tbody>
@@ -41,22 +41,23 @@
 					<tr>
 						<td class="label">Lookup Code:</td>
 						<td>
-							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} not ${isElevatedUser} ? ${product.lookupCode} : ''" class="update" />
 						</td>
 					</tr>
 					<tr>
 						<td class="label">Count:</td>
 						<td>
-							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
+							<input id="productCount" type="number" th:value="${!product.isEmpty} not ${isElevatedUser} ? ${product.count} : ''" class="update" />
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 
+<!-- If user is not an elevated user, the delete and save buttons will not appear for them -->
 		<div class="productActionsWrapper">
 			<br />
-			<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
+			<div id="deleteActionContainer" th:class="${product.isEmpty}  not ${isElevatedUser} ? hidden : ''">
 				<button id="deleteButton" type="button" class="action">Delete</button>
 				<br />
 				<br />
@@ -75,7 +76,7 @@
 			</div>
 		</div>
 	</div>
-		
+
 </body>
 
 </html>
