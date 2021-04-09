@@ -42,13 +42,17 @@
 					<tr>
 						<td class="label">Lookup Code:</td>
 						<td>
-							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+							<div th:class=" not ${isElevatedUser} ? hidden : ''">
+								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<td class="label">Count:</td>
 						<td>
-							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
+							<div th:class=" not ${isElevatedUser} ? hidden : ''">
+								<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
+							</div>
 						</td>
 					</tr>
 				</tbody>
