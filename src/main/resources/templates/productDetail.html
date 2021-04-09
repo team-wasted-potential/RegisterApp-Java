@@ -31,34 +31,35 @@
 		</div>
 
 <!-- If user is not an elevated user, the user will not be able to input text into lookup code or count -->
-		<div class="productDetailWrapper">
-			<table id="productDetails">
-				<tbody>
-					<tr class="hidden">
-						<td>ID:</td>
-						<td>
-							<input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
-						</td>
-					</tr>
-					<tr>
-						<td class="label">Lookup Code:</td>
-						<td>
-							<div id="productLookupCode" th:value=" not ${isElevatedUser} ? hidden : ''">
-								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td class="label">Count:</td>
-						<td>
-							<div id="productLookupCode" th:value=" not ${isElevatedUser} ? hidden : ''">
-								<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
-							</div>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<!-- If user is not an elevated user, the user will not be able to input text into lookup code or count -->
+        <div class="productDetailWrapper">
+            <table id="productDetails">
+                <tbody>
+                    <tr class="hidden">
+                        <td>ID:</td>
+                        <td>
+                            <input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Lookup Code:</td>
+                        <td>
+                            <div th:class=" not ${isElevatedUser} ? hidden : ''">
+                                <input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="label">Count:</td>
+                        <td>
+                            <div th:class=" not ${isElevatedUser} ? hidden : ''">
+                                <input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 <!-- If user is not an elevated user, the delete and save buttons will not appear for them -->
 		<div class="productActionsWrapper">
