@@ -15,21 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-// Function for elevated users
-function showElevatedOptions(elevated) {
-	if(elevated == 0) {
-		document.getElementById("deleteButton").style.visibility = 'hidden';
-		document.getElementById("saveButton").style.display = 'hidden';
-		document.getElementById("productLookupCode").disabled = false;
-		document.getElementById("productCount").disabled = false;
-	}
-	if(elevated == 1) {
-		document.getElementById("deleteButton").style.visibility = 'visible';
-		document.getElementById("saveButton").style.visibility = 'visible';
-		document.getElementById("productLookupCode").disabled = true;
-		document.getElementById("productCount").disabled = true;
-	}
-}
 
 function productLookupCodeKeypress(event) {
 	if (event.which !== 13) { // Enter key

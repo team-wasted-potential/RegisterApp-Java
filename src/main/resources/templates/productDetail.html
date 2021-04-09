@@ -15,7 +15,7 @@
 </head>
 
 <!-- showElevatedOptions() is defined in productDetail.js, passing 1 will show elevated options, 0 will not -->
-<body onload="showElevatedOptions(1)">
+<body>
 	<!-- The following <div> tag contains the logout functionality -->
 		<div class="logoutIcon" title="Logout" id="signOutImage">
 			<span class="material-icons">logout</span>
@@ -42,7 +42,7 @@
 					<tr>
 						<td class="label">Lookup Code:</td>
 						<td>
-							<div th:class=" not ${isElevatedUser} ? hidden : ''">
+							<div id="productLookupCode" th:class=" not ${isElevatedUser} ? hidden : ''">
 								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
 							</div>
 						</td>
@@ -50,7 +50,7 @@
 					<tr>
 						<td class="label">Count:</td>
 						<td>
-							<div th:class=" not ${isElevatedUser} ? hidden : ''">
+							<div id="productLookupCode" th:class=" not ${isElevatedUser} ? hidden : ''">
 								<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
 							</div>
 						</td>
@@ -63,7 +63,7 @@
 		<div class="productActionsWrapper">
 			<div th:class=" not ${isElevatedUser} ? hidden : ''">
 				<br />
-				<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
+				<div id="deleteActionContainer" th:class="${product.isEmpty} ? readonly : ''">
 					<button id="deleteButton" type="button" class="action">Delete</button>
 					<br />
 					<br />
