@@ -29,6 +29,7 @@
 		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
 			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
+
 <!-- If user is not an elevated user, the user will not be able to input text into lookup code or count -->
 		<div class="productDetailWrapper">
 			<table id="productDetails">
@@ -42,7 +43,7 @@
 					<tr>
 						<td class="label">Lookup Code:</td>
 						<td>
-							<div id="productLookupCode" th:class=" not ${isElevatedUser} ? hidden : ''">
+							<div id="productLookupCode" th:value=" not ${isElevatedUser} ? hidden : ''">
 								<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
 							</div>
 						</td>
@@ -50,7 +51,7 @@
 					<tr>
 						<td class="label">Count:</td>
 						<td>
-							<div id="productLookupCode" th:class=" not ${isElevatedUser} ? hidden : ''">
+							<div id="productLookupCode" th:value=" not ${isElevatedUser} ? hidden : ''">
 								<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
 							</div>
 						</td>
@@ -63,7 +64,7 @@
 		<div class="productActionsWrapper">
 			<div th:class=" not ${isElevatedUser} ? hidden : ''">
 				<br />
-				<div id="deleteActionContainer" th:class="${product.isEmpty} ? readonly : ''">
+				<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
 					<button id="deleteButton" type="button" class="action">Delete</button>
 					<br />
 					<br />
