@@ -14,7 +14,7 @@
 </head>
 
 <!-- showElevatedOptions() is defined in mainMenu.js, passing 1 will show elevated options, 0 will not -->
-<body onload="showElevatedOptions(1)">
+<body>
 	<!-- The following <div> tag contains the logout functionality -->
 	<div class="logoutIcon" title="Logout" id="signOutImage">
 			<span class="material-icons">logout</span>
@@ -31,7 +31,7 @@
 
 		<div class="menuWrapper">
 			<div th:class=" not ${isElevatedUser} ? hidden : ''">
-				<a href="/" class="button" title="Functionality Not Availible">Start Transaction</a>
+				<a class="button" title="Functionality Not Availible">Start Transaction</a>
 			</div>
 			<div>
 				<br><br>
@@ -50,7 +50,7 @@
 				<a  class="button" title="Functionality Not Availible">Cashier Report</a>
 			</div>
 		</div>
-
+		
 		<div class="hidden">
 			<input type="checkbox" id="isRefreshed" class="hidden">
 			<script type="text/javascript">
