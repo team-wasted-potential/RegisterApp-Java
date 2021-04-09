@@ -30,7 +30,8 @@
 		</div>
 
 		<div class="productsWrapper">
-			<div>
+			<!-- If user is not elevated user, create new button invisible -->
+			<div th:class=" not ${isElevatedUser} ? hidden : ''">
 				<a href="/productDetail/" class="button">Create New</a>
 			</div>
 
