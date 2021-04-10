@@ -44,17 +44,13 @@
                     <tr>
                         <td class="label">Lookup Code:</td>
                         <td>
-                            <div>
-                                <input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
-                            </div>
+                            <input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
                         </td>
                     </tr>
                     <tr>
                         <td class="label">Count:</td>
                         <td>
-                            <div>
-                                <input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
-                            </div>
+                            <input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
                         </td>
                     </tr>
                 </tbody>
